@@ -2,7 +2,7 @@ import 'package:get/get.dart';
 import 'package:subbeep/application/domain/Subscriptions_domain.dart';
 import 'package:subbeep/application/interface/subscription_interface.dart';
 import 'package:subbeep/repository/local_db/subscription/subscription_entity.dart';
-import 'package:subbeep/repository/local_db/subscription/subscription_loca_src.dart';
+import 'package:subbeep/repository/local_db/subscription/subscription_local_src.dart';
 
 class SubscriptionRepository extends GetxService
     implements ISubscriptionRepository {
