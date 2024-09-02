@@ -16,19 +16,18 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Subbeep Home'),
+        title: const Text('Subbeep Home'),
       ),
       body: ListView.builder(
         itemCount: items.length,
         itemBuilder: (context, index) {
           return Card(
-            margin: EdgeInsets.all(8.0),
+            margin: const EdgeInsets.all(8.0),
             child: ListTile(
               title: Text(items[index]['title']!),
               subtitle: Text(items[index]['subtitle']!),
               onTap: () {
                 // Handle card tap
-                print('Tapped on ${items[index]['title']}');
               },
             ),
           );
