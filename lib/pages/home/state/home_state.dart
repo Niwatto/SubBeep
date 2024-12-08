@@ -1,22 +1,25 @@
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
-import 'package:subbeep/application/domain/Subscriptions_domain.dart';
-import 'package:subbeep/application/usecase/subscription/get_all_subscriptions_usecase.dart';
 
 class HomeState extends GetxController {
-  final getAllSubscriptionsUsecase = Get.find<GetAllSubscriptionsUsecase>();
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  Future<void> scheduleNotification() async {
+    const AndroidNotificationDetails androidDetails = AndroidNotificationDetails(
+      'channel_id',
+      'channel_name',
+      channelDescription: 'channel_description',
+      importance: Importance.max,
+      priority: Priority.high,
+    );
 
-  final RxList<SubscriptionDomain> _subscriptionDomain =
-      <SubscriptionDomain>[].obs;
-  List<SubscriptionDomain> get subscriptions => _subscriptionDomain.toList();
+    const NotificationDetails details = NotificationDetails(android: androidDetails);
 
-  final _items = <Map<String, String>>[].obs;
-  List<Map<String, String>> get items => _items;
-
-  void setItems(List<Map<String, String>> items) {
-    _items.value = items;
-  }
-
-  void loadSubscriptions() async {
-    _subscriptionDomain.addAll(await getAllSubscriptionsUsecase.call());
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Test Notification',
+      'This is the body of the notification',
+      details,
+      payload: 'Custom data',
+    );
   }
 }

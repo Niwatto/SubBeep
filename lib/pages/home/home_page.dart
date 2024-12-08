@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:subbeep/pages/home/state/home_state.dart';
 
-class HomePage extends StatelessWidget {
-  final List<Map<String, String>> items = [
-    {'title': 'Card 1', 'subtitle': 'Description for Card 1'},
-    {'title': 'Card 2', 'subtitle': 'Description for Card 2'},
-    {'title': 'Card 3', 'subtitle': 'Description for Card 3'},
-    {'title': 'Card 4', 'subtitle': 'Description for Card 4'},
-    {'title': 'Card 5', 'subtitle': 'Description for Card 5'},
-  ];
+class HomePage extends StatefulWidget {
   static const routeName = '/home';
 
-  HomePage({super.key});
+  const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  final HomeState homeState = Get.find<HomeState>();
 
   @override
   Widget build(BuildContext context) {
@@ -18,20 +20,14 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Subbeep Home'),
       ),
-      body: ListView.builder(
-        itemCount: items.length,
-        itemBuilder: (context, index) {
-          return Card(
-            margin: const EdgeInsets.all(8.0),
-            child: ListTile(
-              title: Text(items[index]['title']!),
-              subtitle: Text(items[index]['subtitle']!),
-              onTap: () {
-                // Handle card tap
+      body: Row(
+        children: [
+          ElevatedButton(
+              onPressed: () {
+                homeState.scheduleNotification();
               },
-            ),
-          );
-        },
+              child: const Text('Send Notification')),
+        ],
       ),
     );
   }
