@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:subbeep/pages/pages.dart';
+import 'package:subbeep/component/loading.dart';
+import 'package:subbeep/pages.dart';
+import 'package:subbeep/pages/subbeep.dart';
 
 import 'application_state.dart';
 
@@ -19,7 +21,12 @@ class App extends StatelessWidget {
           seedColor: Colors.white,
         ),
       ),
-      initialRoute: applicationState.initialRoute,
+      builder: Loading.init(
+        backgroundColor: Colors.transparent,
+        indicatorColor: Colors.transparent,
+        textColor: Colors.transparent,
+      ),
+      initialRoute: SubbeepPage.routeName,
       navigatorKey: navigatorKey,
       getPages: Pages.execute(),
     );

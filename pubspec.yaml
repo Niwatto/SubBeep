@@ -19,6 +19,8 @@ dependencies:
   lint_staged: ^0.5.1
   hive: ^2.2.3
   flutter_local_notifications: ^18.0.1
+  flutter_screenutil: ^5.9.3
+  flutter_easyloading: ^3.0.5
 
 dev_dependencies:
   flutter_test:
